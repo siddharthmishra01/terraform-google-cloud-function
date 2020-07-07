@@ -19,6 +19,7 @@ resource "google_storage_bucket_object" "archive" {
 }
 
 resource "google_cloudfunctions_function" "cloud_function" {
+  depends_on = [google_storage_bucket_object.archive]
   name                  = var.function_name
   description           = var.description
   runtime               = var.runtime
