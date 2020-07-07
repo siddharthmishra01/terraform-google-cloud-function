@@ -1,8 +1,8 @@
-data "archive_file" "zip" {
+/* data "archive_file" "zip" {
   type        = "zip"
-  source_dir = "${path.module}/${var.source_dir}/"
+  source_dir = "${var.source_dir}"
   output_path = "${path.module}/files/index.zip"
-}
+} */
 
 
 /*
@@ -15,7 +15,7 @@ resource "google_storage_bucket" "bucket" {
 resource "google_storage_bucket_object" "archive" {
   name   = "${var.function_name}/index.zip"
   bucket = var.bucket_name
-  source = data.archive_file.zip.output_path
+  source = "${var.source_dir}"
 }
 
 resource "google_cloudfunctions_function" "cloud_function" {
