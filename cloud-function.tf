@@ -34,5 +34,7 @@ resource "google_cloudfunctions_function" "cloud_function" {
   environment_variables = var.env_variables
 
   labels = local.labels
-
+  
+  project = var.project
+  region  = var.location
 }
